@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TripLog.Views.MainPage"
+             Title="TripLog">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="New" Clicked="New_Clicked" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+
+		<ListView x:Name="trips" ItemsSource="{Binding LogEntries}" ItemTapped="Trips_ItemTapped">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding Title}" Detail="{Binding Notes}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+        
+	</ContentPage.Content>
+</ContentPage>
