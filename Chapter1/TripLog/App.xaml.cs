@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Xamarin.Forms;
 
 namespace TripLog
@@ -13,7 +9,7 @@ namespace TripLog
 		{
 			InitializeComponent();
 
-			MainPage = new TripLog.MainPage();
+			MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()

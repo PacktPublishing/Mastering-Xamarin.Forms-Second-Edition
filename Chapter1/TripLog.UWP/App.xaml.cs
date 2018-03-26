@@ -54,6 +54,9 @@ namespace TripLog.UWP
 
                 Xamarin.Forms.Forms.Init(e);
 
+                // TODO: Add your UWP maps token
+                Xamarin.FormsMaps.Init("YOUR-UWP-MAPS-TOKEN");
+
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
