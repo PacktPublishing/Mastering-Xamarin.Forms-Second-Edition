@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TripLog.UWP.Modules;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -21,7 +22,7 @@ namespace TripLog.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new TripLog.App());
+            LoadApplication(new TripLog.App(new TripLogPlatformModule()));
         }
     }
 }

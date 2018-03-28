@@ -52,5 +52,7 @@
 	<string>TripLog</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>So we can automatically set the location of your trips</string>
 </dict>
 </plist>
