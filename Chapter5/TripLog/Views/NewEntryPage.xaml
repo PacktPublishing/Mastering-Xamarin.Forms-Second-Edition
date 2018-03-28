@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TripLog.Views.NewEntryPage"
+             Title="New Entry">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+
+		<TableView Intent="Form">
+			<TableView.Root>
+				<TableSection>
+					<EntryCell Label="Title" Text="{Binding Title}" />
+					<EntryCell Label="Latitude" Text="{Binding Latitude}" Keyboard="Numeric" />
+					<EntryCell Label="Longitude" Text="{Binding Longitude}" Keyboard="Numeric" />
+					<EntryCell Label="Date" Text="{Binding Date, StringFormat='{0:d}'}" />
+					<EntryCell Label="Rating" Text="{Binding Rating}" Keyboard="Numeric" />
+					<EntryCell Label="Notes" Text="{Binding Notes}" />
+				</TableSection>
+			</TableView.Root>
+		</TableView>
+        
+	</ContentPage.Content>
+</ContentPage>
