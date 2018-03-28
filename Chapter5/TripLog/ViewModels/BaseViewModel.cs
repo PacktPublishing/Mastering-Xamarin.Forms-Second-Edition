@@ -12,6 +12,19 @@ namespace TripLog.ViewModels
 
 		protected INavService NavService { get; private set; }
 
+		bool _isBusy;
+		public bool IsBusy
+		{
+			get { return _isBusy; }
+			set
+			{
+				_isBusy = value;
+				OnPropertyChanged();
+				OnIsBusyChanged();
+			}
+		}
+
+
 		protected BaseViewModel(INavService navService)
 		{
 			NavService = navService;
@@ -22,6 +35,10 @@ namespace TripLog.ViewModels
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		protected virtual void OnIsBusyChanged()
+		{
 		}
 	}
 

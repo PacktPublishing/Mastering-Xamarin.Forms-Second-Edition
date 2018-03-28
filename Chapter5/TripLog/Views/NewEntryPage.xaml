@@ -1,25 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:controls="clr-namespace:TripLog.Controls;assembly=TripLog"
+			 xmlns:converters="clr-namespace:TripLog.Converters;assembly=TripLog"
              x:Class="TripLog.Views.NewEntryPage"
              Title="New Entry">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<converters:ReverseBooleanConverter x:Key="ReverseBooleanConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
 
-		<TableView Intent="Form">
-			<TableView.Root>
-				<TableSection>
-					<EntryCell Label="Title" Text="{Binding Title}" />
-					<EntryCell Label="Latitude" Text="{Binding Latitude}" Keyboard="Numeric" />
-					<EntryCell Label="Longitude" Text="{Binding Longitude}" Keyboard="Numeric" />
-					<EntryCell Label="Date" Text="{Binding Date, StringFormat='{0:d}'}" />
-					<EntryCell Label="Rating" Text="{Binding Rating}" Keyboard="Numeric" />
-					<EntryCell Label="Notes" Text="{Binding Notes}" />
-				</TableSection>
-			</TableView.Root>
-		</TableView>
-        
+		<Grid>
+			<TableView Intent="Form" IsVisible="{Binding IsBusy, Converter={StaticResource ReverseBooleanConverter}}">
+				<TableView.Root>
+					<TableSection>
+						<EntryCell Label="Title" Text="{Binding Title}" />
+						<EntryCell Label="Latitude" Text="{Binding Latitude}" Keyboard="Numeric" />
+						<EntryCell Label="Longitude" Text="{Binding Longitude}" Keyboard="Numeric" />
+						<controls:DatePickerEntryCell Label="Date" Date="{Binding Date, StringFormat='{0:d}'}"/>
+						<EntryCell Label="Rating" Text="{Binding Rating}" Keyboard="Numeric" />
+						<EntryCell Label="Notes" Text="{Binding Notes}" />
+					</TableSection>
+				</TableView.Root>
+			</TableView>
+			
+			<StackLayout Orientation="Vertical"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center"
+                  IsVisible="{Binding IsBusy}">
+				<ActivityIndicator IsRunning="True" />
+				<Label Text="Saving new entry..." />
+			</StackLayout>
+		</Grid>
+
 	</ContentPage.Content>
 </ContentPage>

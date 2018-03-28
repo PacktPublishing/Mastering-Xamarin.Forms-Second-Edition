@@ -2,8 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+			 xmlns:converters="clr-namespace:TripLog.Converters;assembly=TripLog"
              x:Class="TripLog.Views.DetailPage"
              Title="Details">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<converters:RatingToStarImageNameConverter x:Key="RatingToStartImageNameConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.Content>
 
 		<Grid>
@@ -18,10 +24,10 @@
 			<BoxView Grid.Row="1" BackgroundColor="White" Opacity=".8" />
             
 			<StackLayout Padding="10" Grid.Row="1">
-				<Label x:Name="title" Text="{Binding Entry.Title}" HorizontalOptions="Center" />
-				<Label x:Name="date" Text="{Binding Entry.Date, StringFormat='{0:M}'}" HorizontalOptions="Center" />
-				<Label x:Name="rating" Text="{Binding Entry.Rating, StringFormat='{0} star rating'}" HorizontalOptions="Center" />
-				<Label x:Name="notes" Text="{Binding Entry.Notes}" HorizontalOptions="Center" />
+				<Label x:Name="title" Text="{Binding Entry.Title}" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.HelpText="Title of trip" HorizontalOptions="Center" />
+				<Label x:Name="date" Text="{Binding Entry.Date, StringFormat='{0:M}'}" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.HelpText="Date of trip" HorizontalOptions="Center" />
+				<Image Source="{Binding Entry.Rating, Converter={StaticResource RatingToStartImageNameConverter}}" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.HelpText="{Binding Entry.Rating, StringFormat='{0} star rating'}" HorizontalOptions="Center" />
+				<Label x:Name="notes" Text="{Binding Entry.Notes}" AutomationProperties.IsInAccessibleTree="true" AutomationProperties.HelpText="Notes from trip" HorizontalOptions="Center" />
 			</StackLayout>
 		</Grid>
 

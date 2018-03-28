@@ -8,7 +8,10 @@
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
 
-		<ListView x:Name="trips" ItemsSource="{Binding LogEntries}" ItemTapped="Trips_ItemTapped">
+		<ListView x:Name="trips" ItemsSource="{Binding LogEntries}" ItemTapped="Trips_ItemTapped"
+				  IsPullToRefreshEnabled="True" 
+				  IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
+				  RefreshCommand="{Binding RefreshCommand}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextCell Text="{Binding Title}" Detail="{Binding Notes}" />

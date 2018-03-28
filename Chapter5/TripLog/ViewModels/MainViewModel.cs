@@ -38,6 +38,15 @@ namespace TripLog.ViewModels
 			}
 		}
 
+		Command _refreshCommand;
+		public Command RefreshCommand
+		{
+			get
+			{
+				return _refreshCommand ?? (_refreshCommand = new Command(async () => await LoadEntries()));
+			}
+		}
+
 		public MainViewModel(INavService navService) : base(navService)
 		{
 			LogEntries = new ObservableCollection<TripLogEntry>();
@@ -50,7 +59,17 @@ namespace TripLog.ViewModels
 
 		async Task LoadEntries()
 		{
+			if (IsBusy)
+			{
+				return;
+			}
+
+			IsBusy = true;
+
 			LogEntries.Clear();
+
+			// TODO: Remove this in chapter 6
+			await Task.Delay(3000);
 
 			LogEntries.Add(new TripLogEntry
 			{
@@ -81,6 +100,8 @@ namespace TripLog.ViewModels
 				Latitude = 37.8268,
 				Longitude = -122.4798
 			});
+
+			IsBusy = false;
 		}
 
 		async Task ExecuteViewCommand(TripLogEntry entry)

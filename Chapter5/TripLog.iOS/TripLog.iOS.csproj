@@ -91,6 +91,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Modules\TripLogPlatformModule.cs" />
+    <Compile Include="Renderers\DatePickerEntryCellRenderer.cs" />
     <Compile Include="Services\LocationService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -135,5 +136,50 @@
       <Project>{EB46A789-E74B-494D-8460-631274D390A6}</Project>
       <Name>TripLog</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\star_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\star_1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\star_1%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_2%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_3%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_3%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_4%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_4%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_5%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\stars_5%403x.png" />
   </ItemGroup>
 </Project>
