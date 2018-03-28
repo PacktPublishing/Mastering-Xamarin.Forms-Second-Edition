@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TripLog.Models;
+using TripLog.Services;
 
 namespace TripLog.ViewModels
 {
-    public class DetailViewModel : BaseViewModel
+    public class DetailViewModel : BaseViewModel<TripLogEntry>
     {
 		TripLogEntry _entry;
 		public TripLogEntry Entry
@@ -16,9 +18,13 @@ namespace TripLog.ViewModels
 			}
 		}
 
-		public DetailViewModel(TripLogEntry entry)
+		public DetailViewModel(INavService navService) : base(navService)
 		{
-			Entry = entry;
+		}
+
+		public override async Task Init(TripLogEntry logEntry)
+		{
+			Entry = logEntry;
 		}
 	}
 }

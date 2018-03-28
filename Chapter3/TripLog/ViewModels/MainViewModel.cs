@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using TripLog.Models;
+using TripLog.Services;
+using Xamarin.Forms;
 
 namespace TripLog.ViewModels
 {
-    public class MainViewModel : BaseViewModel
-    {
+	public class MainViewModel : BaseViewModel
+	{
 		ObservableCollection<TripLogEntry> _logEntries;
 		public ObservableCollection<TripLogEntry> LogEntries
 		{
@@ -17,9 +20,37 @@ namespace TripLog.ViewModels
 			}
 		}
 
-		public MainViewModel()
+		Command<TripLogEntry> _viewCommand;
+		public Command<TripLogEntry> ViewCommand
+		{
+			get
+			{
+				return _viewCommand	?? (_viewCommand = new Command<TripLogEntry>(async (entry) => await ExecuteViewCommand(entry)));
+			}
+		}
+
+		Command _newCommand;
+		public Command NewCommand
+		{
+			get
+			{
+				return _newCommand ?? (_newCommand = new Command(async () => await ExecuteNewCommand()));
+			}
+		}
+
+		public MainViewModel(INavService navService) : base(navService)
 		{
 			LogEntries = new ObservableCollection<TripLogEntry>();
+		}
+
+		public override async Task Init()
+		{
+			await LoadEntries();
+		}
+
+		async Task LoadEntries()
+		{
+			LogEntries.Clear();
 
 			LogEntries.Add(new TripLogEntry
 			{
@@ -50,6 +81,16 @@ namespace TripLog.ViewModels
 				Latitude = 37.8268,
 				Longitude = -122.4798
 			});
+		}
+
+		async Task ExecuteViewCommand(TripLogEntry entry)
+		{
+			await NavService.NavigateTo<DetailViewModel, TripLogEntry>(entry);
+		}
+
+		async Task ExecuteNewCommand()
+		{
+			await NavService.NavigateTo<NewEntryViewModel>();
 		}
 	}
 }
