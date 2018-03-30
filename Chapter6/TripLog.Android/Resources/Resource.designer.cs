@@ -26,6 +26,7 @@ namespace TripLog.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Splat.Resource.String.library_name = global::TripLog.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::TripLog.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -4008,6 +4009,9 @@ namespace TripLog.Droid
 			
 			// aapt resource value: 0x7f08000f
 			public const int common_signin_button_text_long = 2131230735;
+			
+			// aapt resource value: 0x7f08004f
+			public const int library_name = 2131230799;
 			
 			// aapt resource value: 0x7f080011
 			public const int mr_button_content_description = 2131230737;
