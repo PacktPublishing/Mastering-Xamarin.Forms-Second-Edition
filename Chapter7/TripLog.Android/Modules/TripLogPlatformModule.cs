@@ -10,6 +10,7 @@ namespace TripLog.Droid.Modules
 		public override void Load()
 		{
 			Bind<ILocationService>().To<LocationService>().InSingletonScope();
+			Bind<IAuthService>().To<AuthService>().InSingletonScope();
 		}
 	}
 }

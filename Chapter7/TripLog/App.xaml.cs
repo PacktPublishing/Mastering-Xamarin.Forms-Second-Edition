@@ -12,6 +12,14 @@ namespace TripLog
 	{
 		public IKernel Kernel { get; set; }
 
+		public bool IsSignedIn
+		{
+			get
+			{
+				return !string.IsNullOrWhiteSpace(Helpers.Settings.TripLogApiAuthToken);
+			}
+		}
+
 		public App (params INinjectModule[] platformModules)
 		{
 			InitializeComponent();

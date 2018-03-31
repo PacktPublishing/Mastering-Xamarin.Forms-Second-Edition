@@ -22,6 +22,7 @@ namespace TripLog.Modules
 			navService.XamarinFormsNav = _xfNav;
 
 			// Register view mappings
+			navService.RegisterViewMapping(typeof(SignInViewModel), typeof(SignInPage));
 			navService.RegisterViewMapping(typeof(MainViewModel), typeof(MainPage));
 			navService.RegisterViewMapping(typeof(DetailViewModel), typeof(DetailPage));
 			navService.RegisterViewMapping(typeof(NewEntryViewModel), typeof(NewEntryPage));

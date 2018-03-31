@@ -10,6 +10,7 @@ namespace TripLog.iOS.Modules
 		public override void Load()
 		{
 			Bind<ILocationService>().To<LocationService>().InSingletonScope();
+			Bind<IAuthService>().To<AuthService>().InSingletonScope();
 		}
 	}
 }

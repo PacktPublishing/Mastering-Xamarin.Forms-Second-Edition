@@ -62,7 +62,14 @@ namespace TripLog.ViewModels
 
 		public override async Task Init()
 		{
-			LoadEntries();
+			if (!((App)Application.Current).IsSignedIn)
+			{
+				await NavService.NavigateTo<SignInViewModel>();
+			}
+			else
+			{
+				LoadEntries();
+			}
 		}
 
 		void LoadEntries()

@@ -10,12 +10,13 @@ namespace TripLog.Modules
 		public override void Load()
 		{
 			// ViewModels
+			Bind<SignInViewModel>().ToSelf();
 			Bind<MainViewModel>().ToSelf();
 			Bind<DetailViewModel>().ToSelf();
 			Bind<NewEntryViewModel>().ToSelf();
 
 			// Core services
-			var tripLogService = new TripLogApiDataService(new	Uri("https://<your-service-name>.azurewebsites.net"));
+			var tripLogService = new TripLogApiDataService(new	Uri("https://<your-service-name>.azurewebsites.net"), Helpers.Settings.TripLogApiAuthToken);
 
 			Bind<ITripLogDataService>().ToMethod(x => tripLogService).InSingletonScope();
 

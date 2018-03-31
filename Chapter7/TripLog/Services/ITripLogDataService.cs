@@ -7,6 +7,7 @@ namespace TripLog.Services
 {
     public interface ITripLogDataService
     {
+		Task<TripLogApiAuthToken> GetAuthTokenAsync(string idProvider, string idProviderToken);
 		Task<IList<TripLogEntry>> GetEntriesAsync();
 		Task<TripLogEntry> GetEntryAsync(string id);
 		Task<TripLogEntry> AddEntryAsync(TripLogEntry entry);

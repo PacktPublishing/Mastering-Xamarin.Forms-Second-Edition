@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,13 +12,41 @@ namespace TripLog.Services
 		readonly Uri _baseUri;
 		readonly IDictionary<string, string> _headers;
 
-		public TripLogApiDataService(Uri baseUri)
+		struct IdProviderToken
+		{
+			[JsonProperty("access_token")]
+			public string AccessToken { get; set; }
+		}
+
+		public TripLogApiDataService(Uri baseUri, string authToken)
 		{
 			_baseUri = baseUri;
 			_headers = new Dictionary<string, string>();
-
-			// TODO: Add header with auth-based token in chapter 7
+			
 			_headers.Add("zumo-api-version", "2.0.0");
+			_headers.Add("x-zumo-auth", authToken);
+		}
+
+		public async Task<TripLogApiAuthToken> GetAuthTokenAsync(string idProvider, string idProviderToken)
+		{
+			var token = new IdProviderToken
+			{
+				AccessToken = idProviderToken
+			};
+
+			var url = new Uri(_baseUri, string.Format(".auth/login/{0}", idProvider));
+			
+			var response = await SendRequestAsync<TripLogApiAuthToken>(url, HttpMethod.Post, _headers, token);
+              
+			// Update this service with the new auth token
+			if (response != null)
+			{
+				var authToken = response.AuthenticationToken;
+
+				_headers["x-zumo-auth"] = authToken;
+			}
+
+			return response;
 		}
 
 		public async Task<IList<TripLogEntry>> GetEntriesAsync()
