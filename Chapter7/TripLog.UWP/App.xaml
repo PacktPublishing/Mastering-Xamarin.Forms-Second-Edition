@@ -1,0 +1,29 @@
+﻿<Application
+    x:Class="TripLog.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TripLog.UWP"
+	xmlns:converters="using:TripLog.UWP.Converters"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- This DataTemplate is used by the DatePickerEntryCellRenderer in UWP -->
+            <DataTemplate x:Key="DatePickerEntryCellDataTemplate">
+                <Grid>
+                    <Grid.Resources>
+                        <converters:DateTimeToDateTimeOffsetConverter x:Name="DateTimeToDateTimeOffsetConverter"/>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Label}" FontWeight="SemiBold" Padding="0,0,0,8"/>
+                    <DatePicker Grid.Row="1" Date="{Binding Date, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
