@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using TripLog.Exceptions;
 using TripLog.Models;
 using TripLog.Services;
 
@@ -20,6 +21,11 @@ namespace TripLog.ViewModels
 
 		public DetailViewModel(INavService navService) : base(navService)
 		{
+		}
+
+		public override async Task Init()
+		{
+			throw new EntryNotProvidedException();
 		}
 
 		public override async Task Init(TripLogEntry logEntry)
