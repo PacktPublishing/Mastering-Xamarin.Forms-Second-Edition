@@ -41,6 +41,3 @@ NuGet via the Visual Studio package manager.
 * [Cross-platform UI Development with Xamarin.Forms](https://www.packtpub.com/application-development/cross-platform-ui-development-xamarinforms?utm_source=github&utm_medium=repository&utm_campaign=9781784391195)
 
 * [Mastering Xamarin UI Development](https://www.packtpub.com/application-development/mastering-xamarin-ui-development?utm_source=github&utm_medium=repository&utm_campaign=9781786462008)
-
-### Suggestions and Feedback
-[Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
