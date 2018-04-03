@@ -20,8 +20,8 @@ namespace TripLog.ViewModels
 			}
 		}
 
-		public SignInViewModel(INavService navService, IAuthService authService, ITripLogDataService tripLogService)
-			: base(navService)
+		public SignInViewModel(INavService navService, IAuthService authService, ITripLogDataService tripLogService, IAnalyticsService analyticsService) 
+			: base(navService, analyticsService)
 		{
 			_authService = authService;
 			_tripLogService = tripLogService;

@@ -89,8 +89,8 @@ namespace TripLog.ViewModels
 			}
 		}
 
-		public NewEntryViewModel(INavService navService, ILocationService locService, ITripLogDataService tripLogService) 
-			: base(navService)
+		public NewEntryViewModel(INavService navService, ILocationService locService, ITripLogDataService tripLogService, IAnalyticsService analyticsService) 
+			: base(navService, analyticsService)
 		{
 			_locService = locService;
 			_tripLogService = tripLogService;

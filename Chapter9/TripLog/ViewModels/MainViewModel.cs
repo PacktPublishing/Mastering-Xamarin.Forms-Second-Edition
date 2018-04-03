@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TripLog.Models;
@@ -51,8 +52,8 @@ namespace TripLog.ViewModels
 			}
 		}
 
-		public MainViewModel(INavService navService, ITripLogDataService tripLogService, IBlobCache cache) 
-			: base(navService)
+		public MainViewModel(INavService navService, ITripLogDataService tripLogService, IBlobCache cache, IAnalyticsService analyticsService) 
+			: base(navService, analyticsService)
 		{
 			_tripLogService = tripLogService;
 			_cache = cache;
@@ -88,6 +89,13 @@ namespace TripLog.ViewModels
 				// Load from local cache and then immediately load from API
 				_cache.GetAndFetchLatest("entries", async () => await _tripLogService.GetEntriesAsync())
 					  .Subscribe(entries => LogEntries = new ObservableCollection<TripLogEntry>(entries));
+			}
+			catch (Exception e)
+			{
+				AnalyticsService.TrackError(e, new Dictionary<string, string>
+				{
+					{ "Method", "MainViewModel.LoadEntries()" }
+				});
 			}
 			finally
 			{

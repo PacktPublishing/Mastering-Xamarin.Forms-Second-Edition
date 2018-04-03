@@ -19,6 +19,7 @@ namespace TripLog.Tests.ViewModels
 			var navMock = new Mock<INavService>();
 			var dataMock = new Mock<ITripLogDataService>();
 			var locMock = new Mock<ILocationService>();
+			var analyticsMock = new Mock<IAnalyticsService>();
 
 			locMock.Setup(x => x.GetGeoCoordinatesAsync())
 				.ReturnsAsync(new GeoCoords
@@ -27,7 +28,7 @@ namespace TripLog.Tests.ViewModels
 					Longitude = 321
 				});
 
-			_vm = new NewEntryViewModel(navMock.Object, locMock.Object, dataMock.Object);
+			_vm = new NewEntryViewModel(navMock.Object, locMock.Object, dataMock.Object, analyticsMock.Object);
 		}
 
 		[Test]
